@@ -4,8 +4,6 @@ function logger(req, res, next) {
   next();
 }
 
-
-
 function validateUserId(req, res, next) {
   // DO YOUR MAGIC
 }
