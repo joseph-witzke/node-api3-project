@@ -13,8 +13,14 @@ const {
 
 const router = express.Router();
 
-router.get('/', (req, res) => {
+router.get('/', (req, res, next) => {
   // RETURN AN ARRAY WITH ALL THE USERS
+  Users.get(req.query)
+    .then(users => {
+      res.status(200).json(users)
+    })
+    .catch(err => next(err))
+    //OR just .catch(next)
 });
 
 router.get('/:id', (req, res) => {
