@@ -5,9 +5,10 @@ const server = express();
 
 // remember express by default cannot parse JSON in request bodies
 server.use(express.json())
+server.use(logger)
 server.use('/api/users', userRouter)
 
-server.use(logger)
+
 
 server.use((err, req, res, next) => { // eslint-disable-line
   res.status(err.status || 500).json({
