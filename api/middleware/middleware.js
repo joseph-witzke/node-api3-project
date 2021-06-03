@@ -26,14 +26,21 @@ function validateUserId(req, res, next) {
 function validateUser(req, res, next) {
   const { name } = req.body
   if (!name) {
-    res.status(404).json({message: 'missing required name field' })
+    res.status(400).json({message: 'missing required name field' })
   } else {
     req.user = { name: req.body.name }
-    next()
+    next( )
   }
 }
 
 function validatePost(req, res, next) {
+  const { text } = req.body
+  if (!text || !text.trim()) {
+    res.status(400).json({message: 'missing required text field' })
+  } else {
+    req.text = text.trim()
+    next( )
+  }
 }
 
 // do not forget to expose these functions to other modules
